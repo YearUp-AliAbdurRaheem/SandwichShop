@@ -15,10 +15,20 @@ public class SandwichShop {
 
         // Asking user for age
         System.out.print("Enter your age:\n>>> ");
-        int age = scanner.nextInt();
+        int age = scanner.nextInt(); scanner.nextLine();
+
+        // Asking user if loaded
+        System.out.print("Would you like a \"loaded\" sandwich? (y/n)\n>>> ");
+        String loaded = scanner.nextLine();
+
+        boolean isLoaded = (loaded.equalsIgnoreCase("y") || loaded.equalsIgnoreCase("yes"));
+        double standerdReg = 5.45; double loadedAddReg = 1.00;
+        double standerdLrg = 8.95; double loadedAddLrg = 1.75;
+        double regular = isLoaded ? 5.45 + 1.00 : standerdReg;
+        double large = isLoaded ? 8.95 + 1.75 : standerdLrg;
 
         // calculating total
-        double subtotal = sandwich == 1 ? 5.45 : 8.95;
+        double subtotal = sandwich == 1 ? regular : large;
         double discount = 0;
         if (age <= 17) {
             discount = 0.10;  // 10% student discount
@@ -33,11 +43,14 @@ public class SandwichShop {
         System.out.printf("""
                 ------Recipt------
                  %s Sandwich
+                 Price     $%.2f%s
                  Subtotal: $%.2f
                  Discount: %.0f%%
                  Total: $%.2f
                 ------------------""",
                 sandwich == 1 ? "Regular" : "Large",
+                sandwich == 1 ? standerdReg : standerdLrg,
+                isLoaded ? "\n Loaded   +$" + String.format("%.2f", (sandwich == 1 ? loadedAddReg : loadedAddLrg)) : "",
                 subtotal,
                 discount * 100,
                 total);
