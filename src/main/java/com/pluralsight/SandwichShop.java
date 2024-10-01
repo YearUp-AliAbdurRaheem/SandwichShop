@@ -46,7 +46,7 @@ public class SandwichShop {
                  Price     $%.2f%s
                  Subtotal: $%.2f
                  Discount: %.0f%%
-                 Total: $%.2f
+                 Total:    $%.2f
                 ------------------""",
                 sandwich == 1 ? "Regular" : "Large",
                 sandwich == 1 ? standerdReg : standerdLrg,
